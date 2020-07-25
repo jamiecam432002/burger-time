@@ -28,6 +28,7 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
+    //console.log(this.props);
     axios
       .get("https://burger-dac7c.firebaseio.com/ingredients.json")
       .then((response) => {
@@ -103,33 +104,21 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    //alert("You continue");
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: "Jamie",
-        address: {
-          street: "Milligan St",
-          zipcode: "n1m3s4",
-          country: "Canada",
-        },
-        email: "jamiecam43@gmail.com",
-      },
-      deliveryMethod: "fastest",
-    };
-    axios
-      .post("/orders.json", order)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        this.setState({ loading: false, purchasing: false });
-      });
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+    const priceToFixed = this.state.totalPrice.toFixed(2);
+    queryParams.push("price=" + priceToFixed);
+    const queryString = queryParams.join("&");
+    this.props.history.push({
+      pathname: "/checkout",
+      search: "?" + queryString,
+    });
   };
   render() {
     const disabledInfo = {
