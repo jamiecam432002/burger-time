@@ -26,15 +26,15 @@ const buildControls = (props) => (
       />
     ))}
     <div className={classes.ActionBtns}>
+      <Button btnType="btn--accent" clicked={() => props.ingredientsCleared()}>
+        Start Over
+      </Button>
       <Button
         btnType="btn--primary"
         disabled={!props.purchasable}
         clicked={props.ordered}
       >
         ORDER NOW
-      </Button>
-      <Button btnType="btn--accent" clicked={() => props.ingredientsCleared()}>
-        Start Over
       </Button>
     </div>
   </div>

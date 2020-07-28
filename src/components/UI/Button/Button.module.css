@@ -16,6 +16,7 @@
 }
 .btn:disabled {
   cursor: not-allowed;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .btn--small {
   padding: 1.25rem 3rem !important;
