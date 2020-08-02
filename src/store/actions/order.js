@@ -45,7 +45,7 @@ export const purchaseInit = () => {
 export const fetchOrdersSuccess = (orders) => {
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,
-    order: orders,
+    orders: orders,
   };
 };
 
@@ -64,6 +64,7 @@ export const fetchOrdersStart = () => {
 
 export const fetchOrders = () => {
   return (dispatch) => {
+    dispatch(fetchOrdersStart());
     axios
       .get("/orders.json")
       .then((res) => {
