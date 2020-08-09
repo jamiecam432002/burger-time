@@ -1,3 +1,5 @@
+DEMO: https://burger-dac7c.firebaseapp.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
