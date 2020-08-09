@@ -29,12 +29,8 @@ const buildControls = (props) => (
       <Button btnType="btn--accent" clicked={() => props.ingredientsCleared()}>
         Start Over
       </Button>
-      <Button
-        btnType="btn--primary"
-        disabled={!props.purchasable}
-        clicked={props.ordered}
-      >
-        ORDER NOW
+      <Button btnType="btn--primary" disabled={!props.purchasable} clicked={props.ordered}>
+        {props.isAuth ? "ORDER NOW" : "SIGN UP TO ORDER"}
       </Button>
     </div>
   </div>
